@@ -5,10 +5,14 @@ import java.util.Scanner;
 public class primeiro_rond {
 
 public static void main(String[] args) {
-	
+	plublic();
+}
+private static void plublic() {
+
+
 	float etanol;
 	float gasolina;
-	float per;
+	float percentual;
 	
 	    Scanner input = new Scanner(System.in);
 		
@@ -19,9 +23,10 @@ public static void main(String[] args) {
 	    gasolina = input.nextFloat();
 	    
 	    
-	     per = etanol/gasolina*100;
+	    //calculo de percentual
+	     percentual = etanol/gasolina*100;
 	     
-	     System.out.println("o percentual é : "+per+"%");
+	     System.out.println("o percentual é : "+percentual+"%");
 	}
 
 }

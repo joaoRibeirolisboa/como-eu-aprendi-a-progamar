@@ -4,6 +4,11 @@ import java.util.Scanner;
 
 public class primo {
        public static void main(String[] args) {
+    	   niam();
+       }
+       public static void niam() {
+		
+	
     	   int numero;
     	   
          Scanner input = new Scanner(System.in);
@@ -28,8 +33,8 @@ public class primo {
                 int raiz = (int) Math.sqrt(numero);
                 
 
-                for (int i = 2; i <= raiz; i++) {
-                    if (numero % i == 0) {
+                for (int variavel = 2; variavel <= raiz; variavel++) {
+                    if (numero % variavel == 0) {
                         ehPrimo = false;
                         break;
                         //``` calculo do numero

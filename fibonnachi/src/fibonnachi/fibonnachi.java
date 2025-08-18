@@ -5,9 +5,12 @@ package fibonnachi;
    public class fibonnachi {
 
 	public static void main(String[] args) {
+		niam();
+	}
+	public static void niam() {
 		
-		   int posicao;
-		   
+	
+		   int posicao;	   
 		   int primeiroN;
 		   int segundoN;
 		   int terceiroN;

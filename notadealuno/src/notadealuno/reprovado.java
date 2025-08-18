@@ -6,7 +6,10 @@ public class reprovado {
 
 public static void main(String[] args) {
 	
-            
+}
+public static void niam() {
+	
+
 		float nota;
 		float notadeprova; 
 		float notatarefa; 

@@ -4,9 +4,13 @@ import java.util.Scanner;
 
 public class conversor {
      public static void main(String[] args) {
-		int celsius;
-		int fahrenheit;
+    	 niam();
+	
+     }
+     public static void niam () {
 		
+    		int celsius;
+    		int fahrenheit;
 		Scanner input = new Scanner(System.in);
 		
 		System.out.println("quantos graus celsius");
@@ -16,5 +20,5 @@ public class conversor {
 		fahrenheit = (9*celsius+160)/5;
 	    
 	    System.out.println("converção : "+(fahrenheit));
-	}
+     }
 }

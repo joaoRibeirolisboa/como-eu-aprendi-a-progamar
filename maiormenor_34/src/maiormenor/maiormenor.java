@@ -4,30 +4,34 @@ import java.util.Scanner;
 
 public class maiormenor {
  public static void main(String[] args) {
+	 niam();
+ }
+ public static void niam() {
 	
-	 int i=1;
-	 int maior, menor,n;
+
+	 int banco=1;
+	 int maior, menor,resultado;
 	 
 	 Scanner input = new Scanner(System.in);
 	 
 	 System.out.println("infore o primeiro valor");
-	 n = input.nextInt();
+	 resultado = input.nextInt();
 	 
-	 maior = n;
-	 menor = n;
+	 maior = resultado;
+	 menor = resultado;
 	 
 	 do {
-		 i++;
-		System.out.println("infore o "+i+"valor ");
-		n = input.nextInt();
+		 banco++;
+		System.out.println("infore o "+banco+"valor ");
+		resultado = input.nextInt();
 		
-		if(n>maior) {
-			maior = n;
-		}else if (n<menor) {
-			menor = n;
+		if(resultado>maior) {
+			maior = resultado;
+		}else if (resultado<menor) {
+			menor = resultado;
 			
 		}
-	} while (i<=7);
+	} while (banco<=7);
 	 System.out.println("maior e " +maior);
 	 System.out.println("menor e " +menor);
 	 

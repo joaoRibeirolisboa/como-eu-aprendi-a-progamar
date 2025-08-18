@@ -5,19 +5,25 @@ import java.util.Scanner;
 public class potenciacao {
 	
      public static void main(String[] args) {
+ 
+    	 niam();
+     }	
+    	 public static void niam() {
+			
 		
     	int base; 
     	int expoente;
-    	 int res; 
+    	 int resultado; 
     	
-    	
-    	//res = resultado anterior 
+    	 
     	Scanner input = new Scanner(System.in);
     	
     	do {
-    		res = 1;
+    		resultado = 1;
     		base = 0;
     		expoente = 0;
+    		
+    		
     		System.out.println("informe o numero da base  pro calculo");
         	base = input.nextInt();
         	
@@ -25,12 +31,12 @@ public class potenciacao {
         	expoente = input.nextInt();
         	
         	for (int i = expoente; i >= 1; i--) {
-        		res = res * base;
+        		resultado = resultado * base;
 
         	}
-        	System.out.println("resultado: " +res);
+        	System.out.println("resultado: " +resultado);
         	
-		} while (res >= 2);
+		} while (resultado >= 2);
     	
     	
     	}
