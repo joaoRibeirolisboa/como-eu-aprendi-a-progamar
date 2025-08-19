@@ -17,6 +17,8 @@ public class maiormenor {
 	 System.out.println("infore o primeiro valor");
 	 resultado = input.nextInt();
 	 
+	 //teste para realizar commit.
+	 
 	 maior = resultado;
 	 menor = resultado;
 	 
