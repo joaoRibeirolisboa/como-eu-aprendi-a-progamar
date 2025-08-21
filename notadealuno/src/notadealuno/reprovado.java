@@ -4,9 +4,10 @@ import java.util.Scanner;
 
 public class reprovado {
 
-public static void main(String[] args) {
-	
-}
+	public static void main(String[] args) {
+		niam();
+	}
+
 public static void niam() {
 	
 
@@ -50,7 +51,5 @@ public static void niam() {
 			}
 		}
 		}
-		
-	}
 
-
+}

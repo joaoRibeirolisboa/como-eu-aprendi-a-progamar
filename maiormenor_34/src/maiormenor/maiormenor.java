@@ -6,6 +6,9 @@ public class maiormenor {
  public static void main(String[] args) {
 	 niam();
  }
+ public enum PeriodoEnun{
+	 
+ }
  public static void niam() {
 	
 
@@ -36,7 +39,6 @@ public class maiormenor {
 	} while (banco<=7);
 	 System.out.println("maior e " +maior);
 	 System.out.println("menor e " +menor);
-	 
-	 
+	 	 
 }
 }

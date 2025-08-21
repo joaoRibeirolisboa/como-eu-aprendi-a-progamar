@@ -1,6 +1,7 @@
 package calculadora_basia;
 
 import java.util.Iterator;
+
 import java.util.Scanner;
 
 public class Base {
@@ -13,7 +14,7 @@ public class Base {
 	}
      private static void menu() {  
     	 Scanner input = new Scanner(System.in);
-    	 
+
     	 int op;
     	 
     	 System.out.println("1.soma");
@@ -23,41 +24,72 @@ public class Base {
     	 System.out.println("0.sair");
     	 op = input.nextInt();
     	 
-    	 if (op==1) {
-    		 int n, nn;
-    		 System.out.println("qual o primeiro numero");
-    		 n = input.nextInt();
-    		 System.out.println("qual o sugundo numero");
-             nn = input.nextInt();
-    		System.out.println(+calcualarsoma(n, nn)); 
-			
+    	 Menu menu = Menu.getFromCodigo(op);
+    	 System.out.println(menu);
+    	 if (menu.equals(Menu.SOMA)) {
+    	        int soma = 0;
+    	        int num;
+
+System.out.println("digite os numeros para fazer a soma");
+    	        while (true) {
+    	        	
+        	        System.out.println("Digite o números (0 vc sai):");
+    	            num = input.nextInt();
+    	            if (num == 0) break; // sai do loop
+    	            soma += num;
+    	            System.out.println("pre resultado"+soma);
+    	        }
+
+    	        System.out.println("resultado   " + soma);
+    	        input.close();
+
+    		 
 		}
-    	 if (op==2) {
-    		 int n, nn;
-    		 System.out.println("qual o primeiro numero");
-    		 n = input.nextInt();
-    		 System.out.println("qual o sugundo numero");
-             nn = input.nextInt();
-    		System.out.println(+calcualarsubtracao(n, nn)); 
-			
+    	 if (menu.equals(Menu.SUBTRACAO )) {
+    		  System.out.println("Digite o primeiro número: ");
+    	        int resultado = input.nextInt();
+
+    	        System.out.println("Digite os próximos números (0 para parar):");
+    	        while (true) {
+    	            int num = input.nextInt();
+    	            if (num == 0) break;
+    	            resultado -= num;
+    	        }
+    	        System.out.println("O resultado da subtração é: " + resultado);
+    	        input.close();
 		}
-    	 if (op==3) {
-    		 int n, nn;
-    		 System.out.println("qual o primeiro numero");
-    		 n = input.nextInt();
-    		 System.out.println("qual o sugundo numero");
-             nn = input.nextInt();
-    		System.out.println(+calcualarmultiplicacao(n, nn)); 
-			
+    	 if (menu.equals(Menu.MULTIPLICACAO)) {
+    		 System.out.println("Digite o primeiro número: ");
+    	        int resultado = input.nextInt(); // começa com o primeiro número
+
+    	        System.out.println("Digite os próximos números (0 para parar):");
+    	        while (true) {
+    	            int num = input.nextInt();
+    	            if (num == 0) break; // parar quando for 0
+    	            resultado *= num;
+    	        }
+
+    	        System.out.println("O resultado da multiplicação é: " + resultado);
+    	        input.close();
 		}
-       	 if (op==4) {
-    		 int n, nn;
-    		 System.out.println("qual o primeiro numero");
-    		 n = input.nextInt();
-    		 System.out.println("qual o sugundo numero");
-             nn = input.nextInt();
-    		System.out.println(+calcualardivisao(n, nn)); 
-			
+       	 if (menu.equals(Menu.DIVISAO)) {
+
+             System.out.println("Digite o primeiro número: ");
+             double resultado = input.nextDouble(); // usar double para permitir resultados fracionados
+
+             System.out.println("Digite os próximos números (0 para parar):");
+             while (true) {
+                 double num = input.nextDouble();
+                 if (num == 0) break;
+                 if (num == 0.0) {
+                     System.out.println("seu animal coloque um numero maior q 0");
+                     continue;
+                 }
+                 resultado /= num;
+             }
+
+             System.out.println("O resultado da divisão é: " + resultado);
+             input.close();
 		}
      }
 	
