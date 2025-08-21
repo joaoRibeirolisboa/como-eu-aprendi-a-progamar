@@ -60,12 +60,12 @@ System.out.println("digite os numeros para fazer a soma");
 		}
     	 if (menu.equals(Menu.MULTIPLICACAO)) {
     		 System.out.println("Digite o primeiro número: ");
-    	        int resultado = input.nextInt(); // começa com o primeiro número
+    	        int resultado = input.nextInt(); 
 
     	        System.out.println("Digite os próximos números (0 para parar):");
     	        while (true) {
     	            int num = input.nextInt();
-    	            if (num == 0) break; // parar quando for 0
+    	            if (num == 0) break;
     	            resultado *= num;
     	        }
 
@@ -75,7 +75,7 @@ System.out.println("digite os numeros para fazer a soma");
        	 if (menu.equals(Menu.DIVISAO)) {
 
              System.out.println("Digite o primeiro número: ");
-             double resultado = input.nextDouble(); // usar double para permitir resultados fracionados
+             double resultado = input.nextDouble();
 
              System.out.println("Digite os próximos números (0 para parar):");
              while (true) {
