@@ -42,7 +42,7 @@ System.out.println("digite os numeros para fazer a soma");
 
     	        System.out.println("resultado   " + soma);
     	        input.close();
-
+ 
     		 
 		}
     	 if (menu.equals(Menu.SUBTRACAO )) {
