@@ -1,24 +1,34 @@
 package veiculo;
 
-public enum Passageiro {
-	PCD(1), MASCULINO(2), FEMININO(3), SAIR(0);
+public abstract class Passageiro {
 
-	private final int codigo;
+	int codigo;
+	String nome;
 
-	Passageiro(int codigo) {
+	public int getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(int codigo) {
 		this.codigo = codigo;
 	}
 
-	public int getCodigo() {
-		return this.codigo;
+	public String getNome() {
+		return nome;
 	}
 
-	public static Passageiro getFromCodigo(int codigo) {
-		for (Passageiro tipo : values()) {
-			if (tipo.getCodigo() == codigo) {
-				return tipo;
-			}
-		}
-		return SAIR;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
+
+	public double getPeso() {
+		return peso;
+	}
+
+	public void setPeso(double peso) {
+		this.peso = peso;
+	}
+
+	double peso;
+
 }
