@@ -14,5 +14,8 @@ public class texte {
         
         System.out.println(i);
         System.out.println(o);
+        
+        String Modelo = input.next();
+        
 	}
 }
