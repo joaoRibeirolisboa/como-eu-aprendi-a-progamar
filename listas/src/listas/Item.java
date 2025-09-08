@@ -1,4 +1,4 @@
-package listas;
+package src.listas;
 
 import java.util.Objects;
 

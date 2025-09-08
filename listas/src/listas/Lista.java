@@ -1,5 +1,7 @@
-package listas;
+package src.listas;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Lista {
@@ -8,7 +10,7 @@ public class Lista {
 	private double totalPago;
 	private double totalPendente;
 	
-	private List<Item> itens = new ArryList<Item>();
+	private List<Item> itens = new ArrayList<>();
 
 	@Override
 	public String toString() {
