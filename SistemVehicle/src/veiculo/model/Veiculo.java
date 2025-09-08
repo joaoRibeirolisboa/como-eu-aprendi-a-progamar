@@ -13,8 +13,8 @@ public abstract class Veiculo {
     private int velocidadeMaxima;
     private int capacidade;
     private String modelo;
-	List<Passageiro> Passageiros = new ArrayList<>();
-	boolean isligado = true;
+    List<Passageiro> Passageiros = new ArrayList<>();
+    boolean isligado = true;
     TipoVeiculo tipo;
 
     public static void add(Veiculo novo) {
@@ -26,75 +26,73 @@ public abstract class Veiculo {
 
     public void printInformacoes() {
 
-		System.out.println(modelo+ "" + anoFabricacao);
-		   }
+        System.out.println(modelo + "" + anoFabricacao);
+    }
 
-	public static int getCodigo() {
-		return codigo;
-	}
+    public static int getCodigo() {
+        return codigo;
+    }
 
-	public void setCodigo(int codigo) {
-		this.codigo = codigo;
-	}
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
 
-	public int getAnofabricacao() {
-		return anoFabricacao;
-	}
+    public int getAnofabricacao() {
+        return anoFabricacao;
+    }
 
-	public void setAnofabricacao(int anofabricacao) {
-		this.anoFabricacao = anofabricacao;
-	}
+    public void setAnofabricacao(int anofabricacao) {
+        this.anoFabricacao = anofabricacao;
+    }
 
-	
 
-	public int getVelocidadeMaxima() {
-		return velocidadeMaxima;
-	}
+    public int getVelocidadeMaxima() {
+        return velocidadeMaxima;
+    }
 
-	public void setVelocidadeMaxima(int velocidadeMaxima) {
-		this.velocidadeMaxima = velocidadeMaxima;
-	}
+    public void setVelocidadeMaxima(int velocidadeMaxima) {
+        this.velocidadeMaxima = velocidadeMaxima;
+    }
 
-	public int getCapacidade() {
-		return capacidade;
-	}
+    public int getCapacidade() {
+        return capacidade;
+    }
 
-	public void setCapacidade(int capacidade) {
-		this.capacidade = capacidade;
-	}
+    public void setCapacidade(int capacidade) {
+        this.capacidade = capacidade;
+    }
 
-	public List<Passageiro> getPassageiros() {
-		return Passageiros;
-	}
+    public List<Passageiro> getPassageiros() {
+        return Passageiros;
+    }
 
-	public void setPassageiros(List<Passageiro> passageiros) {
-		Passageiros = passageiros;
-	}
+    public void setPassageiros(List<Passageiro> passageiros) {
+        Passageiros = passageiros;
+    }
 
-	public boolean isIsligado() {
-		return isligado;
-	}
+    public boolean isIsligado() {
+        return isligado;
+    }
 
-	public void setIsligado(boolean isligado) {
-		this.isligado = isligado;
-	}
+    public void setIsligado(boolean isligado) {
+        this.isligado = isligado;
+    }
 
-	public String getModelo() {
-		return modelo;
-	}
+    public String getModelo() {
+        return modelo;
+    }
 
-	public void setModelo(String modelo) {
-		this.modelo = modelo;
-	}
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
 
-	public TipoVeiculo getTipo() {
-		return tipo;
-	}
+    public TipoVeiculo getTipo() {
+        return tipo;
+    }
 
-	public void setTipo(TipoVeiculo tipo) {
-		this.tipo = tipo;
-	}
-
+    public void setTipo(TipoVeiculo tipo) {
+        this.tipo = tipo;
+    }
 
 
     @Override
@@ -104,8 +102,8 @@ public abstract class Veiculo {
 
     public void prinInformacoes() {
         System.out.println(this.toString() +
-            " - Velocidade: " + velocidadeMaxima +
-            " - Capacidade: " + capacidade);
+                " - Velocidade: " + velocidadeMaxima +
+                " - Capacidade: " + capacidade);
     }
 
     public static int getCodigo(double v) {

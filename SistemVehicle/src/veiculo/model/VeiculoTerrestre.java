@@ -1,10 +1,8 @@
 package src.veiculo.model;
 
-public class VeiculoTerrestre extends Veiculo {
-    List<Veiculo> terrestres = Veiculo.stream()
-            .filter(v -> v instanceof VeiculoTerrestre)
-            .toList();
+import java.util.List;
 
+public class VeiculoTerrestre extends Veiculo {
 	int numeroRodas;
 
 	public VeiculoTerrestre(int numeroRodas) {
