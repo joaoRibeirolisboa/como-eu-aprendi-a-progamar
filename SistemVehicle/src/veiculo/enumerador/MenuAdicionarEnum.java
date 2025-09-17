@@ -2,7 +2,7 @@ package src.veiculo.enumerador;
 
 public enum MenuAdicionarEnum {
 
-	TERRESTRE(1, "terresatre"), AEREO(2, "aereo"), AQUATICO(3, "aquatico"), BACK(0, "back  <-");
+	TERRESTRE(1, "1 terresatre"), AEREO(2, "2 aereo"), AQUATICO(3, "3 aquatico"), BACK(0, "0 back  <-");
 
 	public String getDescricao() {
 		return descricao;

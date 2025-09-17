@@ -1,8 +1,8 @@
 package src.veiculo.enumerador;
 
 public enum MenuPrincipalEnum {
-	SELECIONAR(1, "1.selecionar veiculo"), ADICIONAR(2, "2.adicionar veiculo"), REMOVER(3, "3.remover veiculo"),
-	LISTAR(4, "4.listar veiculos"), SAIR(0, "0.sair");
+	SELECIONAR(1, "1.selecionar veiculo"), ADICIONAR(2, "2.adicionar veiculo"),
+	LISTAR(3, "3.listar veiculos"), SAIR(0, "0.sair");
 
 	public String getDescricao() {
 		return descricao;

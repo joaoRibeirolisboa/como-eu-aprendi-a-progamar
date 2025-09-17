@@ -8,12 +8,15 @@ import java.util.stream.DoubleStream;
 import src.veiculo.enumerador.TipoVeiculo;
 
 public abstract class Veiculo {
-    private static int codigo;
+    private int codigo;
     private int anoFabricacao;
     private int velocidadeMaxima;
     private int capacidade;
-    private String modelo;
-    List<Passageiro> Passageiros = new ArrayList<>();
+
+
+    private int passageiro;
+   // List<Passageiro> Passageiros = new ArrayList<>();
+   private String modelo;
     boolean isligado = true;
     TipoVeiculo tipo;
 
@@ -24,12 +27,20 @@ public abstract class Veiculo {
         return DoubleStream.empty();
     }
 
+    public void printInformacoesresumidas() {
+
+        System.out.println(codigo+ "-" +modelo + " " + anoFabricacao);
+    }
     public void printInformacoes() {
 
-        System.out.println(modelo + "" + anoFabricacao);
-    }
 
-    public static int getCodigo() {
+        System.out.println("ano de Fabricacao: " +anoFabricacao);
+        System.out.println("velocidade Maxima: " +velocidadeMaxima);
+        System.out.println("capacidade de passageiros: "+capacidade);
+        System.out.println("modelo: " +modelo);
+
+    }
+    public int getCodigo() {
         return codigo;
     }
 
@@ -62,13 +73,13 @@ public abstract class Veiculo {
         this.capacidade = capacidade;
     }
 
-    public List<Passageiro> getPassageiros() {
+   /* public List<Passageiro> getPassageiros() {
         return Passageiros;
     }
 
     public void setPassageiros(List<Passageiro> passageiros) {
         Passageiros = passageiros;
-    }
+    }*/
 
     public boolean isIsligado() {
         return isligado;
@@ -76,6 +87,14 @@ public abstract class Veiculo {
 
     public void setIsligado(boolean isligado) {
         this.isligado = isligado;
+    }
+
+    public int getPassageiro() {
+        return passageiro;
+    }
+
+    public void setPassageiro(int passageiro) {
+        this.passageiro = passageiro;
     }
 
     public String getModelo() {
@@ -98,12 +117,6 @@ public abstract class Veiculo {
     @Override
     public String toString() {
         return "[" + codigo + "] " + modelo + " (" + anoFabricacao + ")";
-    }
-
-    public void prinInformacoes() {
-        System.out.println(this.toString() +
-                " - Velocidade: " + velocidadeMaxima +
-                " - Capacidade: " + capacidade);
     }
 
     public static int getCodigo(double v) {

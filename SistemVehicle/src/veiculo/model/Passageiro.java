@@ -1,6 +1,6 @@
 package src.veiculo.model;
 
-public abstract class Passageiro {
+public class Passageiro {
 
 	int codigo;
 	String nome;

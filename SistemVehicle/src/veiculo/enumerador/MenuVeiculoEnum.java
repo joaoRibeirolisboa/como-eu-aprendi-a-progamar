@@ -1,26 +1,29 @@
 package src.veiculo.enumerador;
 
-public enum MenuRemoverEnum {
-    TERRESTRE(1, "terrestre"), AEREO(2, "aéreo"), AQUATICO(3, "aquático"), BACK(0, "back <-");
+public enum MenuVeiculoEnum {
+    REMOVER(1, "1 Remover veículo"),
+    USAR(2, "2 usar"),
+    ALTERAR(3, "3 Alterar"),
+    BACK(0, "0 Voltar <-");
 
     private final int codigo;
     private final String descricao;
 
-    MenuRemoverEnum(int codigo, String descricao) {
+    MenuVeiculoEnum(int codigo, String descricao) {
         this.codigo = codigo;
         this.descricao = descricao;
     }
 
     public int getCodigo() {
-        return this.codigo;
+        return codigo;
     }
 
     public String getDescricao() {
-        return this.descricao;
+        return descricao;
     }
 
-    public static MenuRemoverEnum getFromCodigo(int codigo) {
-        for (MenuRemoverEnum menu : values()) {
+    public static MenuVeiculoEnum getFromCodigo(int codigo) {
+        for (MenuVeiculoEnum menu : values()) {
             if (menu.getCodigo() == codigo) {
                 return menu;
             }
