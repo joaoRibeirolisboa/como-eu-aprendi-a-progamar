@@ -1,27 +1,28 @@
 package src.veiculo.model;
 
-import java.util.List;
-
 public class VeiculoTerrestre extends Veiculo {
-	int numeroRodas;
+    private int numeroRodas;
 
-	public VeiculoTerrestre(int numeroRodas) {
-		this.numeroRodas = numeroRodas;
-	}
+    public VeiculoTerrestre(int numeroRodas) {
+        this.numeroRodas = numeroRodas;
+    }
 
-	public int getNumeroRodas() {
-		return this.numeroRodas;
-	}
+    public int getNumeroRodas() {
+        return numeroRodas;
+    }
 
-	public void setNumeroRodas(int numeroRodas) {
-		this.numeroRodas = numeroRodas;
-	}
-	
-	@Override
-	public void printInformacoes() {
-		super.printInformacoes();
-        System.out.println("numero de rodas:    " +numeroRodas);
-	}
+    public void setNumeroRodas(int numeroRodas) {
+        this.numeroRodas = numeroRodas;
+    }
 
+    @Override
+    public void printInformacoes() {
+        super.printInformacoes();
+        System.out.println("Número de rodas: " + numeroRodas);
+    }
 
+    @Override
+    public boolean podeMover(int velocidadeAtual, int acelerar) {
+        return true;
+    }
 }

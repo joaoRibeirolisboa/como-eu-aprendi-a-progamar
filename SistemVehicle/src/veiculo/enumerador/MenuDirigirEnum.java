@@ -4,7 +4,11 @@ public enum MenuDirigirEnum {
     DESLIGAR(2, "2  Desligar veículo"),
     ACELERAR(3, "3  Acelerar"),
     FREAR(4, "4  Frear"),
-    BACK(0, "0  Voltar");
+    BACK(0, "0  Voltar"),
+    SUBIR_ANCORA(6, "6  Subir âncora"),
+    DESCER_ANCORA(7, "7  Descer âncora"),
+    DECOLAR(8, "8  Decolar"),
+    POUSAR(9, "9  Pousar");
 
     private final int codigo;
     private final String descricao;

@@ -1,8 +1,5 @@
 package src.veiculo.model;
 
-import java.util.List;
-
-import java.util.ArrayList;
 import java.util.stream.DoubleStream;
 
 import src.veiculo.enumerador.TipoVeiculo;
@@ -10,6 +7,7 @@ import src.veiculo.enumerador.TipoVeiculo;
 public abstract class Veiculo {
     private int codigo;
     private int anoFabricacao;
+    private int velocidadeAtual;
     private int velocidadeMaxima;
     private int capacidade;
 
@@ -17,7 +15,7 @@ public abstract class Veiculo {
     private int passageiro;
    // List<Passageiro> Passageiros = new ArrayList<>();
    private String modelo;
-    boolean isligado = true;
+    boolean isligado ;
     TipoVeiculo tipo;
 
     public static void add(Veiculo novo) {
@@ -29,15 +27,15 @@ public abstract class Veiculo {
 
     public void printInformacoesresumidas() {
 
-        System.out.println(codigo+ "-" +modelo + " " + anoFabricacao);
+        System.out.println(modelo + "-"+codigo + " " + anoFabricacao);
     }
     public void printInformacoes() {
 
-
+        System.out.println("modelo: " +modelo);
         System.out.println("ano de Fabricacao: " +anoFabricacao);
         System.out.println("velocidade Maxima: " +velocidadeMaxima);
         System.out.println("capacidade de passageiros: "+capacidade);
-        System.out.println("modelo: " +modelo);
+
 
     }
     public int getCodigo() {
@@ -113,6 +111,21 @@ public abstract class Veiculo {
         this.tipo = tipo;
     }
 
+    public int getAnoFabricacao() {
+        return anoFabricacao;
+    }
+
+    public void setAnoFabricacao(int anoFabricacao) {
+        this.anoFabricacao = anoFabricacao;
+    }
+
+    public int getVelocidadeAtual() {
+        return velocidadeAtual;
+    }
+
+    public void setVelocidadeAtual(int velocidadeAtual) {
+        this.velocidadeAtual = velocidadeAtual;
+    }
 
     @Override
     public String toString() {
@@ -122,4 +135,7 @@ public abstract class Veiculo {
     public static int getCodigo(double v) {
         return 0;
     }
+    public abstract boolean podeMover(int velocidadeAtual, int acelerar);
 }
+
+
