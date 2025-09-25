@@ -26,18 +26,16 @@ public abstract class Veiculo {
     }
 
     public void printInformacoesresumidas() {
-
         System.out.println(modelo + "-"+codigo + " " + anoFabricacao);
     }
-    public void printInformacoes() {
 
+    public void printInformacoes() {
         System.out.println("modelo: " +modelo);
         System.out.println("ano de Fabricacao: " +anoFabricacao);
         System.out.println("velocidade Maxima: " +velocidadeMaxima);
         System.out.println("capacidade de passageiros: "+capacidade);
-
-
     }
+
     public int getCodigo() {
         return codigo;
     }
@@ -79,7 +77,7 @@ public abstract class Veiculo {
         Passageiros = passageiros;
     }*/
 
-    public boolean isIsligado() {
+    public boolean isligado() {
         return isligado;
     }
 
@@ -129,7 +127,7 @@ public abstract class Veiculo {
 
     @Override
     public String toString() {
-        return "[" + codigo + "] " + modelo + " (" + anoFabricacao + ")";
+        return this.getCodigo() + " - " + this.getModelo() + " (" + this.getAnofabricacao() + ")";
     }
 
     public static int getCodigo(double v) {
