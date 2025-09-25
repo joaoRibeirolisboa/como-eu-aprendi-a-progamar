@@ -86,12 +86,12 @@ public class Main {
             calado = input.nextInt();
         }
 
-       boolean  ancorado = true;
+        boolean ancorado = true;
 
 
         System.out.println("Digite o numero de ancoras: ");
         int numeroAncoras = input.nextInt();
-        veiculo = new VeiculoAquatico(numeroAncoras,calado,ancorado);
+        veiculo = new VeiculoAquatico(numeroAncoras, calado, ancorado);
 
         return preeencheValoresComuns(input, veiculo);
 
@@ -111,7 +111,6 @@ public class Main {
         boolean ancorado = false;
 
 
-
         if (ancorado) {
             System.out.println(" O barco já está ancorado.");
         } else {
@@ -119,7 +118,6 @@ public class Main {
             System.out.println(" Âncoras lançadas! O barco está ancorado.");
         }
     }
-
 
 
     public static void adicionarComCodigo(Veiculo novo) {
@@ -163,30 +161,22 @@ public class Main {
         Scanner input = new Scanner(System.in);
 
         System.out.println("Veículos cadastrados:");
-        for (Veiculo v : veiculos) {
-            System.out.println(v.getCodigo() + " - " + v.getModelo() + " (" + v.getAnofabricacao() + ")");
-        }
+        veiculos.forEach(v -> System.out.println(v.toString()));
 
         System.out.println("Digite o código do veículo que deseja selecionar:");
         int codigoEscolhido = input.nextInt();
 
-        Veiculo selecionado = null;
-        for (Veiculo v : veiculos) {
-            if (v.getCodigo() == codigoEscolhido) {
-                selecionado = v;
-                break;
-            }
-        }
+        Veiculo selecionado = veiculos.stream().filter(v -> v.getCodigo() == codigoEscolhido).findFirst().orElse(null);
 
-        if (selecionado != null) {
-            System.out.println("Vc selecionou:");
-            selecionado.printInformacoes();
-            Thread.sleep(1000);
-            navegarMenuveiculo(selecionado);
-
-        } else {
+        if (selecionado == null) {
             System.out.println("Código inválido");
+            return;
         }
+
+        System.out.println("Vc selecionou:");
+        selecionado.printInformacoes();
+        Thread.sleep(1000);
+        navegarMenuveiculo(selecionado);
     }
 
     public static void navegarMenuAdicionar() {
@@ -331,6 +321,7 @@ public class Main {
         System.out.println("");
         Thread.sleep(750);
     }
+
     public static void MenuDirigirenum(Scanner input, Veiculo veiculoSelecionado) throws InterruptedException {
         if (veiculoSelecionado == null) {
             System.out.println("Veículo não encontrado");
@@ -395,21 +386,18 @@ public class Main {
     }
 
     public static void dirigir(Scanner input, Veiculo veiculoSelecionado) throws InterruptedException {
-        boolean ligado = false;
-        int velocidadeAtual = 0;
-
         while (true) {
 
-
             System.out.println("");
-            System.out.println("Velocidade atual: " + velocidadeAtual + " km/h");
-            System.out.println("Status: " + (ligado ? "Ligado" : "Desligado"));
+            System.out.println("Velocidade atual: " + veiculoSelecionado.getVelocidadeAtual() + "m/h");
+            System.out.println("Status: " + (veiculoSelecionado.isligado() ? "Ligado" : "Desligado"));
             Thread.sleep(1750);
-            System.out.println("===== MENU DIRIGIR =====");
-            for (MenuDirigirEnum menu : MenuDirigirEnum.values()) {
-                System.out.println(menu.getDescricao());
 
+            System.out.println("===== MENU DIRIGIR =====");
+            for (MenuDirigirEnum menu : MenuDirigirEnum.montarPorVeiculo(veiculoSelecionado.getTipo())) {
+                System.out.println(menu.getDescricao());
             }
+
             System.out.print("Escolha o que você quer fazer: ");
 
 
