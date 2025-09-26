@@ -9,10 +9,10 @@ public enum MenuDirigirEnum {
     DESLIGAR(2, "2  Desligar veículo"),
     ACELERAR(3, "3  Acelerar"),
     FREAR(4, "4  Frear"),
-    SUBIR_ANCORA(6, TipoVeiculo.AQUATICO, "6  Subir âncora"),
-    DESCER_ANCORA(7, TipoVeiculo.AQUATICO,"7  Descer âncora"),
-    DECOLAR(8, TipoVeiculo.AEREO,"8  Decolar"),
-    POUSAR(9, TipoVeiculo.AEREO,"9  Pousar"),
+    SUBIR_ANCORA(5, TipoVeiculo.AQUATICO, "5  Subir âncora"),
+    DESCER_ANCORA(6, TipoVeiculo.AQUATICO,"6  Descer âncora"),
+    DECOLAR(7, TipoVeiculo.AEREO,"7  Decolar"),
+    POUSAR(8, TipoVeiculo.AEREO,"8  Pousar"),
     BACK(0, "0  Voltar");
 
     private final int codigo;
