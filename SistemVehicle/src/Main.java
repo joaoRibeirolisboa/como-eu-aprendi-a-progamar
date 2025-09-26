@@ -90,14 +90,11 @@ public class Main {
 
         boolean ancorado = true;
 
-
         System.out.println("Digite o numero de ancoras: ");
         int numeroAncoras = input.nextInt();
         VeiculoAquatico veiculo = new VeiculoAquatico(numeroAncoras, calado, ancorado);
         veiculo.setTipo(TipoVeiculo.AQUATICO);
         return preeencheValoresComuns(input, veiculo);
-
-
     }
 
     public void subirAncora() {
@@ -392,13 +389,10 @@ public class Main {
     }
 
     public static void dirigir(Scanner input, Veiculo veiculoSelecionado) throws InterruptedException {
-        boolean ligado = false;
-        int velocidadeAtual = 0;
-
         while (true) {
             System.out.println("");
-            System.out.println("Velocidade atual: " + velocidadeAtual + " km/h");
-            System.out.println("Status: " + (ligado ? "Ligado" : "Desligado"));
+            System.out.println("Velocidade atual: " + veiculoSelecionado.getVelocidadeAtual() + " km/h");
+            System.out.println("Status: " + (veiculoSelecionado.isligado() ? "Ligado" : "Desligado"));
             Thread.sleep(1750);
             System.out.println("===== MENU DIRIGIR =====");
 
@@ -418,20 +412,20 @@ public class Main {
 
             switch (menuDirigir) {
                 case LIGAR -> {
-                    if (ligado) {
+                    if (veiculoSelecionado.isligado()) {
                         System.out.println("O veiculo ja esta ligado");
                         Thread.sleep(1000);
-                    } else {
-                        ligado = true;
-                        System.out.println("Vruummm O veículo foi ligado");
-                        Thread.sleep(1000);
+                        return;
                     }
+                    veiculoSelecionado.setIsligado(true);
+                    System.out.println("Vruummm O veículo foi ligado");
+                    Thread.sleep(1000);
                 }
                 case DESLIGAR -> {
                     if (!ligado) {
                         System.out.println("\uD83E\uDD28\u200B O veículo ja ta desligado");
                         Thread.sleep(1000);
-                    } else if (velocidadeAtual > 0) {
+                    } else if (veiculoSelecionado.getVelocidadeAtual() > 0) {
                         System.out.println("Nao da pra deligar em movimento");
                         Thread.sleep(1000);
                     } else {
