@@ -58,10 +58,11 @@ public class Main {
         return veiculo;
     }
 
-    public static Veiculo preencheValoresVeiculoTerrestre(Scanner input, Veiculo veiculo) {
+    public static Veiculo preencheValoresVeiculoTerrestre(Scanner input) {
         System.out.println("Qual é o número de rodas do seu veículo");
         int numeroRodas = input.nextInt();
-        veiculo = new VeiculoTerrestre(numeroRodas);
+        VeiculoTerrestre veiculo = new VeiculoTerrestre(numeroRodas);
+        veiculo.setTipo(TipoVeiculo.TERRESTRE);
         return preeencheValoresComuns(input, veiculo);
     }
 
@@ -86,12 +87,12 @@ public class Main {
             calado = input.nextInt();
         }
 
-       boolean  ancorado = true;
+        boolean ancorado = true;
 
 
         System.out.println("Digite o numero de ancoras: ");
         int numeroAncoras = input.nextInt();
-        veiculo = new VeiculoAquatico(numeroAncoras,calado,ancorado);
+        veiculo = new VeiculoAquatico(numeroAncoras, calado, ancorado);
 
         return preeencheValoresComuns(input, veiculo);
 
@@ -111,7 +112,6 @@ public class Main {
         boolean ancorado = false;
 
 
-
         if (ancorado) {
             System.out.println(" O barco já está ancorado.");
         } else {
@@ -119,7 +119,6 @@ public class Main {
             System.out.println(" Âncoras lançadas! O barco está ancorado.");
         }
     }
-
 
 
     public static void adicionarComCodigo(Veiculo novo) {
@@ -138,6 +137,7 @@ public class Main {
         veiculoTerrestre.setCapacidade(2);
         veiculoTerrestre.setVelocidadeMaxima(296);
         veiculoTerrestre.setModelo("Porsche 911 GT3 RS");
+        veiculoTerrestre.setTipo(TipoVeiculo.TERRESTRE);
         veiculos.add(veiculoTerrestre);
 
         VeiculoAquatico veiculoAquatico = new VeiculoAquatico(40);
@@ -146,6 +146,7 @@ public class Main {
         veiculoAquatico.setCapacidade(16);
         veiculoAquatico.setVelocidadeMaxima(66);
         veiculoAquatico.setModelo("Lancha NX360");
+        veiculoAquatico.setTipo(TipoVeiculo.AQUATICO);
         veiculos.add(veiculoAquatico);
 
         VeiculoAereo veiculoAereo = new VeiculoAereo(4000);
@@ -154,6 +155,7 @@ public class Main {
         veiculoAereo.setCapacidade(12);
         veiculoAereo.setVelocidadeMaxima(946);
         veiculoAereo.setModelo("Bombardier Global Express");
+        veiculoAereo.setTipo(TipoVeiculo.AEREO);
         veiculos.add(veiculoAereo);
 
         return veiculos;
@@ -163,30 +165,22 @@ public class Main {
         Scanner input = new Scanner(System.in);
 
         System.out.println("Veículos cadastrados:");
-        for (Veiculo v : veiculos) {
-            System.out.println(v.getCodigo() + " - " + v.getModelo() + " (" + v.getAnofabricacao() + ")");
-        }
+        veiculos.forEach(v -> System.out.println(v.toString()));
 
         System.out.println("Digite o código do veículo que deseja selecionar:");
         int codigoEscolhido = input.nextInt();
 
-        Veiculo selecionado = null;
-        for (Veiculo v : veiculos) {
-            if (v.getCodigo() == codigoEscolhido) {
-                selecionado = v;
-                break;
-            }
-        }
+        Veiculo selecionado = veiculos.stream().filter(v -> v.getCodigo() == codigoEscolhido).findFirst().orElse(null);
 
-        if (selecionado != null) {
-            System.out.println("Vc selecionou:");
-            selecionado.printInformacoes();
-            Thread.sleep(1000);
-            navegarMenuveiculo(selecionado);
-
-        } else {
+        if (selecionado == null) {
             System.out.println("Código inválido");
+            return;
         }
+
+        System.out.println("Vc selecionou:");
+        selecionado.printInformacoes();
+        Thread.sleep(1000);
+        navegarMenuveiculo(selecionado);
     }
 
     public static void navegarMenuAdicionar() {
@@ -200,7 +194,7 @@ public class Main {
         Veiculo veiculo = null;
 
         if (TERRESTRE.equals(menuAdicionar)) {
-            veiculo = preencheValoresVeiculoTerrestre(input, veiculo);
+            veiculo = preencheValoresVeiculoTerrestre(input);
         } else if (AEREO.equals(menuAdicionar)) {
             veiculo = preencheValoresVeiculoAereo(input, veiculo);
         } else if (AQUATICO.equals(menuAdicionar)) {
@@ -331,6 +325,7 @@ public class Main {
         System.out.println("");
         Thread.sleep(750);
     }
+
     public static void MenuDirigirenum(Scanner input, Veiculo veiculoSelecionado) throws InterruptedException {
         if (veiculoSelecionado == null) {
             System.out.println("Veículo não encontrado");
@@ -399,141 +394,99 @@ public class Main {
         int velocidadeAtual = 0;
 
         while (true) {
-
-
             System.out.println("");
             System.out.println("Velocidade atual: " + velocidadeAtual + " km/h");
             System.out.println("Status: " + (ligado ? "Ligado" : "Desligado"));
             Thread.sleep(1750);
             System.out.println("===== MENU DIRIGIR =====");
-            for (MenuDirigirEnum menu : MenuDirigirEnum.values()) {
+
+            for (MenuDirigirEnum menu : MenuDirigirEnum.montarPorVeiculo(veiculoSelecionado.getTipo())) {
                 System.out.println(menu.getDescricao());
-
             }
-            System.out.print("Escolha o que você quer fazer: ");
 
+            System.out.print("Escolha o que você quer fazer: ");
 
             int opcao = input.nextInt();
             MenuDirigirEnum menuDirigir = MenuDirigirEnum.getFromCodigo(opcao);
-
 
             if (menuDirigir == null) {
                 System.out.println("\uD83E\uDD28\u200B");
                 continue;
             }
+
             switch (menuDirigir) {
-
-                        case LIGAR -> {
-                            if (ligado) {
-                                System.out.println("O veiculo ja esta ligado");
-                                Thread.sleep(1000);
-                            } else {
-                                ligado = true;
-                                System.out.println("Vruummm O veículo foi ligado");
-                                Thread.sleep(1000);
-                            }
-                        }
-                        case DESLIGAR -> {
-                            if (!ligado) {
-                                System.out.println("\uD83E\uDD28\u200B O veículo ja ta desligado");
-                                Thread.sleep(1000);
-                            } else if (velocidadeAtual > 0) {
-                                System.out.println("Nao da pra deligar em movimento");
-                                Thread.sleep(1000);
-                            } else {
-                                ligado = false;
-                                System.out.println("desligado");
-                                Thread.sleep(1000);
-                            }
-                        }
-                        case ACELERAR -> {
-                            if (!ligado) {
-                                System.out.println("O veículo precisa estar ligado!");
-                            } else {
-                                System.out.print("Quanto você quer acelerar (km/h)? ");
-                                int acelerar = input.nextInt();
-
-                                if (!veiculoSelecionado.podeMover(velocidadeAtual, acelerar)) {
-                                    System.out.println(" Este veículo não pode se mover nessas condições");
-                                    continue;
-                                }
-
-                                // regra padrão para acelerar
-                                if (velocidadeAtual + acelerar <= veiculoSelecionado.getVelocidadeMaxima()) {
-                                    velocidadeAtual += acelerar;
-                                    System.out.println("Velocidade atual: " + velocidadeAtual + " km/h");
-                                } else {
-                                    velocidadeAtual = veiculoSelecionado.getVelocidadeMaxima();
-                                    System.out.println("Velocidade máxima atingida: " + velocidadeAtual + " km/h");
-                                }
-                            }
-                        }
-
-                        case FREAR -> {
-                            if (!ligado) {
-                                System.out.println("O veiculo esta desligado");
-                                Thread.sleep(1000);
-                            } else if (velocidadeAtual == 0) {
-                                System.out.println("O veículo ja esta parado");
-                                Thread.sleep(1000);
-                            } else {
-                                System.out.print("quanto voce quer frear (km/h)? ");
-                                int frear = input.nextInt();
-                                if (frear >= velocidadeAtual) {
-                                    velocidadeAtual = 0;
-                                    System.out.println("O veiculo parou");
-                                    Thread.sleep(1000);
-                                } else {
-                                    velocidadeAtual -= frear;
-                                    System.out.println("vc desacelerou Velocidade atual: " + velocidadeAtual + " km/h");
-                                    Thread.sleep(1000);
-                                }
-                            }
-                        }
-
-                        case BACK -> {
-
-                            return;
-                        }
-                if (TipoVeiculo == TipoVeiculo.AQUATICO) {
-                    case SUBIR_ANCORA -> {
-                        int ancora = 0;
-                        System.out.println("subindo a ancora" );
-                           ++ ancora ;
-                        return;
-
-                       } case DESCER_ANCORA -> {
-                   int ancora =1;
-                        System.out.println("dessendo a ancora" );
-                         --ancora ;
-                           return;
-
+                case LIGAR -> {
+                    if (ligado) {
+                        System.out.println("O veiculo ja esta ligado");
+                        Thread.sleep(1000);
+                    } else {
+                        ligado = true;
+                        System.out.println("Vruummm O veículo foi ligado");
+                        Thread.sleep(1000);
                     }
+                }
+                case DESLIGAR -> {
+                    if (!ligado) {
+                        System.out.println("\uD83E\uDD28\u200B O veículo ja ta desligado");
+                        Thread.sleep(1000);
+                    } else if (velocidadeAtual > 0) {
+                        System.out.println("Nao da pra deligar em movimento");
+                        Thread.sleep(1000);
+                    } else {
+                        ligado = false;
+                        System.out.println("desligado");
+                        Thread.sleep(1000);
+                    }
+                }
+                case ACELERAR -> {
+                    if (!ligado) {
+                        System.out.println("O veículo precisa estar ligado!");
+                    } else {
+                        System.out.print("Quanto você quer acelerar (km/h)? ");
+                        int acelerar = input.nextInt();
 
-                }else if (TipoVeiculo == TipoVeiculo.AEREO){
-                    case DECOLAR -> {
-                        if (veiculoSelecionado.getVelocidadeAtual() < 300) {
-                            System.out.println("vc ainda n pode decolar ");
-                            return;
-                        }else {
-                            System.out.println("vc esta no ar ");
-                            return;
+                        if (!veiculoSelecionado.podeMover(velocidadeAtual, acelerar)) {
+                            System.out.println(" Este veículo não pode se mover nessas condições");
+                            continue;
                         }
 
-                    } case POUSAR -> {
-                      if (veiculoSelecionado.getVelocidadeAtual() >= 300) {
-                          System.out.println("vc deceu");
-
-                      }else {
-                          System.out.println("vc n pode desser vc esta muito rapido");
-                      }
+                        // regra padrão para acelerar
+                        if (velocidadeAtual + acelerar <= veiculoSelecionado.getVelocidadeMaxima()) {
+                            velocidadeAtual += acelerar;
+                            System.out.println("Velocidade atual: " + velocidadeAtual + " km/h");
+                        } else {
+                            velocidadeAtual = veiculoSelecionado.getVelocidadeMaxima();
+                            System.out.println("Velocidade máxima atingida: " + velocidadeAtual + " km/h");
+                        }
                     }
-
-
                 }
 
+                case FREAR -> {
+                    if (!ligado) {
+                        System.out.println("O veiculo esta desligado");
+                        Thread.sleep(1000);
+                    } else if (velocidadeAtual == 0) {
+                        System.out.println("O veículo ja esta parado");
+                        Thread.sleep(1000);
+                    } else {
+                        System.out.print("quanto voce quer frear (km/h)? ");
+                        int frear = input.nextInt();
+                        if (frear >= velocidadeAtual) {
+                            velocidadeAtual = 0;
+                            System.out.println("O veiculo parou");
+                            Thread.sleep(1000);
+                        } else {
+                            velocidadeAtual -= frear;
+                            System.out.println("vc desacelerou Velocidade atual: " + velocidadeAtual + " km/h");
+                            Thread.sleep(1000);
+                        }
+                    }
+                }
+                case BACK -> {
+                    return;
                 }
             }
         }
+    }
 
 }
