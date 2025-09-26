@@ -66,15 +66,16 @@ public class Main {
         return preeencheValoresComuns(input, veiculo);
     }
 
-    public static Veiculo preencheValoresVeiculoAereo(Scanner input, Veiculo veiculo) {
+    public static Veiculo preencheValoresVeiculoAereo(Scanner input) {
 
         System.out.println("Qual é a altitude máxima que o veículo alcança");
         int altitude = input.nextInt();
-        veiculo = new VeiculoAereo(altitude);
+        VeiculoAereo veiculo  = new VeiculoAereo(altitude);
+        veiculo.setTipo(TipoVeiculo.AEREO);
         return preeencheValoresComuns(input, veiculo);
     }
 
-    public static Veiculo preencheValoresVeiculoAquatico(Scanner input, Veiculo veiculo) {
+    public static Veiculo preencheValoresVeiculoAquatico(Scanner input) {
         System.out.println("Qual é o nível do calado");
         System.out.println("Se você quer uma explicaçao digite 1");
         int calado = input.nextInt();
@@ -92,9 +93,10 @@ public class Main {
 
         System.out.println("Digite o numero de ancoras: ");
         int numeroAncoras = input.nextInt();
-        veiculo = new VeiculoAquatico(numeroAncoras, calado, ancorado);
-
+        VeiculoAquatico veiculo = new VeiculoAquatico(numeroAncoras, calado, ancorado);
+        veiculo.setTipo(TipoVeiculo.AQUATICO);
         return preeencheValoresComuns(input, veiculo);
+
 
     }
 
@@ -196,9 +198,9 @@ public class Main {
         if (TERRESTRE.equals(menuAdicionar)) {
             veiculo = preencheValoresVeiculoTerrestre(input);
         } else if (AEREO.equals(menuAdicionar)) {
-            veiculo = preencheValoresVeiculoAereo(input, veiculo);
+            veiculo = preencheValoresVeiculoAereo(input);
         } else if (AQUATICO.equals(menuAdicionar)) {
-            veiculo = preencheValoresVeiculoAquatico(input, veiculo);
+            veiculo = preencheValoresVeiculoAquatico(input);
         } else {
             System.out.println("VC SAIU");
             return;
