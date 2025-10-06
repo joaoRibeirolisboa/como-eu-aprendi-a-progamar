@@ -415,66 +415,72 @@ public class Main {
                     if (veiculoSelecionado.isligado()) {
                         System.out.println("O veiculo ja esta ligado");
                         Thread.sleep(1000);
-                        return;
+                        continue;
                     }
                     veiculoSelecionado.setIsligado(true);
                     System.out.println("Vruummm O veículo foi ligado");
                     Thread.sleep(1000);
                 }
                 case DESLIGAR -> {
-                    if (!ligado) {
+                    if (!veiculoSelecionado.isligado()) {
                         System.out.println("\uD83E\uDD28\u200B O veículo ja ta desligado");
                         Thread.sleep(1000);
                     } else if (veiculoSelecionado.getVelocidadeAtual() > 0) {
                         System.out.println("Nao da pra deligar em movimento");
                         Thread.sleep(1000);
                     } else {
-                        ligado = false;
+                        veiculoSelecionado.isligado();
                         System.out.println("desligado");
                         Thread.sleep(1000);
                     }
                 }
                 case ACELERAR -> {
-                    if (!ligado) {
+                    int i = 1;
+                    if (!veiculoSelecionado.isligado()) {
                         System.out.println("O veículo precisa estar ligado!");
-                    } else {
+                    } else if ( veiculoSelecionado.getVelocidadeAtual() >= veiculoSelecionado.getVelocidadeMaxima()) {
+                        System.out.println("Velocidade máxima atingida: " + veiculoSelecionado.getVelocidadeAtual() + " km/h");
+                    }else  {
                         System.out.print("Quanto você quer acelerar (km/h)? ");
                         int acelerar = input.nextInt();
 
-                        if (!veiculoSelecionado.podeMover(velocidadeAtual, acelerar)) {
+                        if (!veiculoSelecionado.podeMover(veiculoSelecionado.getVelocidadeAtual(), acelerar)) {
                             System.out.println(" Este veículo não pode se mover nessas condições");
                             continue;
                         }
 
-                        // regra padrão para acelerar
-                        if (velocidadeAtual + acelerar <= veiculoSelecionado.getVelocidadeMaxima()) {
-                            velocidadeAtual += acelerar;
-                            System.out.println("Velocidade atual: " + velocidadeAtual + " km/h");
+
+                        if (veiculoSelecionado.getVelocidadeAtual() + acelerar <= veiculoSelecionado.getVelocidadeMaxima()) {
+                              veiculoSelecionado.setVelocidadeAtual(++acelerar) ;
+                            System.out.println("Velocidade atual: " + veiculoSelecionado.getVelocidadeAtual() + " km/h");
                         } else {
-                            velocidadeAtual = veiculoSelecionado.getVelocidadeMaxima();
-                            System.out.println("Velocidade máxima atingida: " + velocidadeAtual + " km/h");
+                            veiculoSelecionado.setVelocidadeAtual(veiculoSelecionado.getVelocidadeMaxima());
+                            System.out.println("Velocidade máxima atingida: " + veiculoSelecionado.getVelocidadeAtual() + " km/h");
+
                         }
                     }
                 }
 
                 case FREAR -> {
-                    if (!ligado) {
+                    int i = 1;
+                    if (!veiculoSelecionado.isligado()) {
                         System.out.println("O veiculo esta desligado");
                         Thread.sleep(1000);
-                    } else if (velocidadeAtual == 0) {
+                    } else if (veiculoSelecionado.getVelocidadeAtual() == 0) {
                         System.out.println("O veículo ja esta parado");
                         Thread.sleep(1000);
                     } else {
                         System.out.print("quanto voce quer frear (km/h)? ");
                         int frear = input.nextInt();
-                        if (frear >= velocidadeAtual) {
-                            velocidadeAtual = 0;
+                        if (frear >= veiculoSelecionado.getVelocidadeAtual()) {
+                            veiculoSelecionado.setVelocidadeAtual(0);
                             System.out.println("O veiculo parou");
                             Thread.sleep(1000);
                         } else {
-                            velocidadeAtual -= frear;
-                            System.out.println("vc desacelerou Velocidade atual: " + velocidadeAtual + " km/h");
+                            veiculoSelecionado.setVelocidadeAtual(frear);
+                            System.out.println("Você desacelerou. Velocidade atual: " + veiculoSelecionado.getVelocidadeAtual() + " km/h");
                             Thread.sleep(1000);
+
                         }
                     }
                 }

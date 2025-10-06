@@ -134,6 +134,7 @@ public abstract class Veiculo {
         return 0;
     }
     public abstract boolean podeMover(int velocidadeAtual, int acelerar);
+
 }
 
 
