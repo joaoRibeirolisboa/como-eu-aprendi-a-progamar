@@ -133,7 +133,34 @@ public abstract class Veiculo {
     public static int getCodigo(double v) {
         return 0;
     }
-    public abstract boolean podeMover(int velocidadeAtual, int acelerar);
+
+    public boolean podeMover(int velocidadeAtual, int acelerar) {
+
+        if (!isligado) {
+            System.out.println("O veículo está desligado. Ligue-o antes de acelerar.");
+            return false;
+        }
+
+        if (acelerar < 0) {
+            System.out.println("Aceleração inválida. Use um valor positivo.");
+            return false;
+        }
+
+        return true;
+    }
+
+    public void acelerar(int acelerar) {
+
+        int novaVelocidade = this.velocidadeAtual + acelerar;
+
+        if (novaVelocidade > this.velocidadeMaxima) {
+            this.velocidadeAtual = this.velocidadeMaxima;
+            System.out.println("Velocidade máxima atingida: " + this.velocidadeMaxima + " km/h");
+        } else {
+            this.velocidadeAtual = novaVelocidade;
+            System.out.println("Velocidade atual: " + this.velocidadeAtual + " km/h");
+        }
+    }
 
 }
 

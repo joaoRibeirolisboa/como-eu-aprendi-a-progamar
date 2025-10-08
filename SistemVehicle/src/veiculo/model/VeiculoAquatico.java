@@ -68,7 +68,15 @@ public class VeiculoAquatico extends Veiculo {
 
     @Override
     public boolean podeMover(int velocidadeAtual, int acelerar) {
+        return !ancorado && super.podeMover(velocidadeAtual, acelerar);
+    }
 
-        return !ancorado;
+    public void acelerar(int acelerar) {
+        if (podeMover(getVelocidadeAtual(), acelerar)) {
+            System.out.println("Acelerando para " + getVelocidadeAtual() + " nós.");
+            super.acelerar(acelerar);
+        } else {
+            System.out.println("Não é possível acelerar. O veículo está ancorado.");
+        }
     }
 }

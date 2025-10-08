@@ -435,6 +435,7 @@ public class Main {
                     }
                 }
                 case ACELERAR -> {
+                    handleAcelerar(veiculoSelecionado);
                     int i = 1;
                     if (!veiculoSelecionado.isligado()) {
                         System.out.println("O veículo precisa estar ligado!");
@@ -488,6 +489,25 @@ public class Main {
                     return;
                 }
             }
+        }
+    }
+
+    private static void handleAcelerar(Veiculo veiculoSelecionado) {
+
+        int acelerar = 10; // receber via input
+
+
+        switch (veiculoSelecionado) {
+            case VeiculoAquatico aquatico -> {
+                aquatico.acelerar(acelerar);
+            }
+            case VeiculoAereo aereo -> {
+                aereo.acelerar(acelerar);
+            }
+            case VeiculoTerrestre terrestre -> {
+                terrestre.acelerar(acelerar);
+            }
+            default -> throw new IllegalStateException("Unexpected value: " + veiculoSelecionado);
         }
     }
 
