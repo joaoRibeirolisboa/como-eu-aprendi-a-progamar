@@ -1,10 +1,10 @@
 package src.veiculo.model;
 
 public class VeiculoAereo extends Veiculo {
-    private int altitudeMaxima;
-    private int velocidadeMinimaDecolagem;
-    private int decolar;
-    private int pousar;
+    private  int altitudeMaxima;
+    private  int velocidadeMinimaDecolagem;
+    private  int decolar;
+    private  int pousar;
 
     public int getPousar() {
         return pousar;
@@ -51,8 +51,15 @@ public class VeiculoAereo extends Veiculo {
     }
 
     @Override
-    public boolean podeMover(int velocidadeAtual, int acelerar) {
+    public boolean podeMover(int velocidadeAtual, int acelerar ) {
 
         return (velocidadeAtual + acelerar) >= velocidadeMinimaDecolagem;
     }
+
+    @Override
+    public void frear() {
+
+    }
+
+
 }

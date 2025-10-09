@@ -1,5 +1,6 @@
 package src;
 
+import java.nio.channels.OverlappingFileLockException;
 import java.util.Scanner;
 import java.util.List;
 import java.util.ArrayList;
@@ -70,7 +71,7 @@ public class Main {
 
         System.out.println("Qual é a altitude máxima que o veículo alcança");
         int altitude = input.nextInt();
-        VeiculoAereo veiculo  = new VeiculoAereo(altitude);
+        VeiculoAereo veiculo = new VeiculoAereo(altitude);
         veiculo.setTipo(TipoVeiculo.AEREO);
         return preeencheValoresComuns(input, veiculo);
     }
@@ -92,7 +93,12 @@ public class Main {
 
         System.out.println("Digite o numero de ancoras: ");
         int numeroAncoras = input.nextInt();
-        VeiculoAquatico veiculo = new VeiculoAquatico(numeroAncoras, calado, ancorado);
+        VeiculoAquatico veiculo = new VeiculoAquatico(numeroAncoras, calado, ancorado) {
+            @Override
+            public void frear() {
+
+            }
+        };
         veiculo.setTipo(TipoVeiculo.AQUATICO);
         return preeencheValoresComuns(input, veiculo);
     }
@@ -139,7 +145,12 @@ public class Main {
         veiculoTerrestre.setTipo(TipoVeiculo.TERRESTRE);
         veiculos.add(veiculoTerrestre);
 
-        VeiculoAquatico veiculoAquatico = new VeiculoAquatico(40);
+        VeiculoAquatico veiculoAquatico = new VeiculoAquatico(40) {
+            @Override
+            public void frear() {
+
+            }
+        };
         veiculoAquatico.setCodigo(2);
         veiculoAquatico.setAnofabricacao(2025);
         veiculoAquatico.setCapacidade(16);
@@ -388,6 +399,7 @@ public class Main {
         Thread.sleep(1000);
     }
 
+
     public static void dirigir(Scanner input, Veiculo veiculoSelecionado) throws InterruptedException {
         while (true) {
             System.out.println("");
@@ -439,9 +451,9 @@ public class Main {
                     int i = 1;
                     if (!veiculoSelecionado.isligado()) {
                         System.out.println("O veículo precisa estar ligado!");
-                    } else if ( veiculoSelecionado.getVelocidadeAtual() >= veiculoSelecionado.getVelocidadeMaxima()) {
+                    } else if (veiculoSelecionado.getVelocidadeAtual() >= veiculoSelecionado.getVelocidadeMaxima()) {
                         System.out.println("Velocidade máxima atingida: " + veiculoSelecionado.getVelocidadeAtual() + " km/h");
-                    }else  {
+                    } else {
                         System.out.print("Quanto você quer acelerar (km/h)? ");
                         int acelerar = input.nextInt();
 
@@ -452,7 +464,7 @@ public class Main {
 
 
                         if (veiculoSelecionado.getVelocidadeAtual() + acelerar <= veiculoSelecionado.getVelocidadeMaxima()) {
-                              veiculoSelecionado.setVelocidadeAtual(++acelerar) ;
+                            veiculoSelecionado.setVelocidadeAtual(++acelerar);
                             System.out.println("Velocidade atual: " + veiculoSelecionado.getVelocidadeAtual() + " km/h");
                         } else {
                             veiculoSelecionado.setVelocidadeAtual(veiculoSelecionado.getVelocidadeMaxima());
@@ -485,6 +497,19 @@ public class Main {
                         }
                     }
                 }
+                /*case SUBIR_ANCORA -> {
+                    (!veiculo.veiculoselecionado.veiculoAquatico)
+
+                    if (!veiculoSelecionado.isligado()) {
+                        System.out.println("O veiculo esta desligado");
+                        Thread.sleep(1000);
+                    }else if (veiculoSelecionado.() == 0) {
+                        System.out.println("O veículo ja esta parado");
+                        Thread.sleep(1000);
+
+                    }
+                    }*/
+
                 case BACK -> {
                     return;
                 }
@@ -500,12 +525,22 @@ public class Main {
         switch (veiculoSelecionado) {
             case VeiculoAquatico aquatico -> {
                 aquatico.acelerar(acelerar);
+                aquatico.getSubirAncora();
+                aquatico.getDescerAncora();
+                aquatico.frear();
+
             }
             case VeiculoAereo aereo -> {
                 aereo.acelerar(acelerar);
+                aereo.getVelocidadeMinimaDecolagem();
+                aereo.getDecolar();
+                aereo.getPousar();
+                aereo.frear();
             }
             case VeiculoTerrestre terrestre -> {
                 terrestre.acelerar(acelerar);
+                terrestre.isligado();
+                terrestre.frear();
             }
             default -> throw new IllegalStateException("Unexpected value: " + veiculoSelecionado);
         }

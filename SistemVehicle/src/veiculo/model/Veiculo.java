@@ -13,9 +13,9 @@ public abstract class Veiculo {
 
 
     private int passageiro;
-   // List<Passageiro> Passageiros = new ArrayList<>();
-   private String modelo;
-    boolean isligado ;
+    // List<Passageiro> Passageiros = new ArrayList<>();
+    private String modelo;
+    boolean isligado;
     TipoVeiculo tipo;
 
     public static void add(Veiculo novo) {
@@ -26,14 +26,14 @@ public abstract class Veiculo {
     }
 
     public void printInformacoesresumidas() {
-        System.out.println(modelo + "-"+codigo + " " + anoFabricacao);
+        System.out.println(modelo + "-" + codigo + " " + anoFabricacao);
     }
 
     public void printInformacoes() {
-        System.out.println("modelo: " +modelo);
-        System.out.println("ano de Fabricacao: " +anoFabricacao);
-        System.out.println("velocidade Maxima: " +velocidadeMaxima);
-        System.out.println("capacidade de passageiros: "+capacidade);
+        System.out.println("modelo: " + modelo);
+        System.out.println("ano de Fabricacao: " + anoFabricacao);
+        System.out.println("velocidade Maxima: " + velocidadeMaxima);
+        System.out.println("capacidade de passageiros: " + capacidade);
     }
 
     public int getCodigo() {
@@ -137,12 +137,12 @@ public abstract class Veiculo {
     public boolean podeMover(int velocidadeAtual, int acelerar) {
 
         if (!isligado) {
-            System.out.println("O veículo está desligado. Ligue-o antes de acelerar.");
+            System.out.println("O veï¿½culo estï¿½ desligado. Ligue-o antes de acelerar.");
             return false;
         }
 
         if (acelerar < 0) {
-            System.out.println("Aceleração inválida. Use um valor positivo.");
+            System.out.println("Aceleraï¿½ï¿½o invï¿½lida. Use um valor positivo.");
             return false;
         }
 
@@ -155,13 +155,14 @@ public abstract class Veiculo {
 
         if (novaVelocidade > this.velocidadeMaxima) {
             this.velocidadeAtual = this.velocidadeMaxima;
-            System.out.println("Velocidade máxima atingida: " + this.velocidadeMaxima + " km/h");
+            System.out.println("Velocidade mï¿½xima atingida: " + this.velocidadeMaxima + " km/h");
         } else {
             this.velocidadeAtual = novaVelocidade;
             System.out.println("Velocidade atual: " + this.velocidadeAtual + " km/h");
         }
     }
 
+    public abstract void frear();
 }
 
 

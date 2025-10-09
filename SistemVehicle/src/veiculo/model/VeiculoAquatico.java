@@ -1,11 +1,11 @@
 package src.veiculo.model;
 
-public class VeiculoAquatico extends Veiculo {
-    private int calado;
-    private int numeroAncoras;
-    private boolean ancorado;
-    private int subirAncora;
-    private int descerAncora;
+public abstract class VeiculoAquatico extends Veiculo {
+    private static int calado;
+    private static int numeroAncoras;
+    private static boolean ancorado;
+    private static int subirAncora;
+    private static int descerAncora;
 
     public int getSubirAncora() {
         return subirAncora;
@@ -79,4 +79,6 @@ public class VeiculoAquatico extends Veiculo {
             System.out.println("Não é possível acelerar. O veículo está ancorado.");
         }
     }
+
+
 }

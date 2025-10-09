@@ -1,7 +1,7 @@
 package src.veiculo.model;
 
 public class VeiculoTerrestre extends Veiculo {
-    private int numeroRodas;
+    private static int numeroRodas;
 
     public VeiculoTerrestre(int numeroRodas) {
         this.numeroRodas = numeroRodas;
@@ -24,5 +24,8 @@ public class VeiculoTerrestre extends Veiculo {
     @Override
     public boolean podeMover(int velocidadeAtual, int acelerar) {
         return true;
+    }
+
+    public void frear() {
     }
 }
