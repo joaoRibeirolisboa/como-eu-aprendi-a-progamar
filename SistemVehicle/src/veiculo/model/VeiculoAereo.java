@@ -1,46 +1,39 @@
 package src.veiculo.model;
 
 public class VeiculoAereo extends Veiculo {
-    private  int altitudeMaxima;
-    private  int velocidadeMinimaDecolagem;
-    private  int decolar;
-    private  int pousar;
+    private int altitudeMaxima;
+    private int velocidadeMinimaDecolagem;
+    private boolean emVoo; // estado do avião
 
-    public int getPousar() {
-        return pousar;
-    }
-
-    public void setPousar(int pousar) {
-        this.pousar = pousar;
-    }
-
-    public int getDecolar() {
-        return decolar;
-    }
-
-    public void setDecolar(int decolar) {
-        this.decolar = decolar;
-    }
-
-    public VeiculoAereo(int altitudeMaxima) {
+    public VeiculoAereo(int altitudeMaxima, int velocidadeMinimaDecolagem) {
         this.altitudeMaxima = altitudeMaxima;
         this.velocidadeMinimaDecolagem = velocidadeMinimaDecolagem;
+        this.emVoo = false;
     }
 
-    public int getAltitudeMaxima() {
-        return altitudeMaxima;
+    public int getAltitudeMaxima() { return altitudeMaxima; }
+    public void setAltitudeMaxima(int altitudeMaxima) { this.altitudeMaxima = altitudeMaxima; }
+
+    public int getVelocidadeMinimaDecolagem() { return velocidadeMinimaDecolagem; }
+    public void setVelocidadeMinimaDecolagem(int velocidadeMinimaDecolagem) { this.velocidadeMinimaDecolagem = velocidadeMinimaDecolagem; }
+
+    // 🔹 novos métodos públicos
+    public void decolar() {
+        if (!emVoo) {
+            emVoo = true;
+            System.out.println("Avião decolando...");
+        } else {
+            System.out.println("O avião já está em voo.");
+        }
     }
 
-    public void setAltitudeMaxima(int altitudeMaxima) {
-        this.altitudeMaxima = altitudeMaxima;
-    }
-
-    public int getVelocidadeMinimaDecolagem() {
-        return velocidadeMinimaDecolagem;
-    }
-
-    public void setVelocidadeMinimaDecolagem(int velocidadeMinimaDecolagem) {
-        this.velocidadeMinimaDecolagem = velocidadeMinimaDecolagem;
+    public void pousar() {
+        if (emVoo) {
+            emVoo = false;
+            System.out.println("Avião pousando...");
+        } else {
+            System.out.println("O avião já está no solo.");
+        }
     }
 
     @Override
@@ -51,15 +44,13 @@ public class VeiculoAereo extends Veiculo {
     }
 
     @Override
-    public boolean podeMover(int velocidadeAtual, int acelerar ) {
-
+    public boolean podeMover(int velocidadeAtual, int acelerar) {
         return (velocidadeAtual + acelerar) >= velocidadeMinimaDecolagem;
     }
-
-    @Override
-    public void frear() {
-
+    public VeiculoAereo(int altitudeMaxima) {
+        this.altitudeMaxima = altitudeMaxima;
+        this.velocidadeMinimaDecolagem = 200; // valor padrão
+        this.emVoo = false;
     }
-
 
 }

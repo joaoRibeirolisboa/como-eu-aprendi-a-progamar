@@ -1,19 +1,19 @@
 package src.veiculo.model;
 
 public class VeiculoTerrestre extends Veiculo {
-    private static int numeroRodas;
+    private int numeroRodas;
+    private boolean ligado;
 
     public VeiculoTerrestre(int numeroRodas) {
         this.numeroRodas = numeroRodas;
+        this.ligado = false;
     }
 
-    public int getNumeroRodas() {
-        return numeroRodas;
-    }
+    public int getNumeroRodas() { return numeroRodas; }
+    public void setNumeroRodas(int numeroRodas) { this.numeroRodas = numeroRodas; }
 
-    public void setNumeroRodas(int numeroRodas) {
-        this.numeroRodas = numeroRodas;
-    }
+    public boolean isLigado() { return ligado; }
+    public void setLigado(boolean ligado) { this.ligado = ligado; }
 
     @Override
     public void printInformacoes() {
@@ -23,9 +23,6 @@ public class VeiculoTerrestre extends Veiculo {
 
     @Override
     public boolean podeMover(int velocidadeAtual, int acelerar) {
-        return true;
-    }
-
-    public void frear() {
+        return ligado;
     }
 }

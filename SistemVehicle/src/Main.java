@@ -94,10 +94,7 @@ public class Main {
         System.out.println("Digite o numero de ancoras: ");
         int numeroAncoras = input.nextInt();
         VeiculoAquatico veiculo = new VeiculoAquatico(numeroAncoras, calado, ancorado) {
-            @Override
-            public void frear() {
 
-            }
         };
         veiculo.setTipo(TipoVeiculo.AQUATICO);
         return preeencheValoresComuns(input, veiculo);
@@ -146,10 +143,7 @@ public class Main {
         veiculos.add(veiculoTerrestre);
 
         VeiculoAquatico veiculoAquatico = new VeiculoAquatico(40) {
-            @Override
-            public void frear() {
 
-            }
         };
         veiculoAquatico.setCodigo(2);
         veiculoAquatico.setAnofabricacao(2025);
@@ -516,33 +510,38 @@ public class Main {
             }
         }
     }
-
     private static void handleAcelerar(Veiculo veiculoSelecionado) {
+        int acelerar = 10; // futuramente pode vir via input
 
-        int acelerar = 10; // receber via input
-
+        if (veiculoSelecionado == null) {
+            System.out.println("Nenhum veículo selecionado!");
+            return;
+        }
 
         switch (veiculoSelecionado) {
             case VeiculoAquatico aquatico -> {
                 aquatico.acelerar(acelerar);
-                aquatico.getSubirAncora();
-                aquatico.getDescerAncora();
-                aquatico.frear();
-
+                aquatico.subirAncora();
+                aquatico.descerAncora();
+                // aquatico.frear();
             }
             case VeiculoAereo aereo -> {
                 aereo.acelerar(acelerar);
-                aereo.getVelocidadeMinimaDecolagem();
-                aereo.getDecolar();
-                aereo.getPousar();
-                aereo.frear();
+                System.out.println("Velocidade mínima de decolagem: " + aereo.getVelocidadeMinimaDecolagem());
+                aereo.decolar();
+                aereo.pousar();
+                // aereo.frear();
             }
             case VeiculoTerrestre terrestre -> {
                 terrestre.acelerar(acelerar);
-                terrestre.isligado();
-                terrestre.frear();
+                if (terrestre.isLigado()) {
+                    System.out.println("O veículo terrestre está ligado e acelerando!");
+                } else {
+                    System.out.println("O veículo terrestre está desligado.");
+                }
+                // terrestre.frear();
             }
-            default -> throw new IllegalStateException("Unexpected value: " + veiculoSelecionado);
+            default -> throw new IllegalStateException("Tipo de veículo inesperado: " + veiculoSelecionado.getClass().getSimpleName());
         }
     }
 

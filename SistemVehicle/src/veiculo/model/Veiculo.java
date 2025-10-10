@@ -162,7 +162,19 @@ public abstract class Veiculo {
         }
     }
 
-    public abstract void frear();
+    public  void frear(int frear){
+
+
+        int novaVelocidade = this.velocidadeAtual - frear;
+
+        if (novaVelocidade > this.velocidadeMaxima) {
+            this.velocidadeAtual = this.velocidadeMaxima;
+            System.out.println("Velocidade m�xima atingida: " + this.velocidadeMaxima + " km/h");
+        } else {
+            this.velocidadeAtual = novaVelocidade;
+            System.out.println("Velocidade atual: " + this.velocidadeAtual + " km/h");
+        }
+    }
 }
 
 
