@@ -1,6 +1,5 @@
 package src;
 
-import java.nio.channels.OverlappingFileLockException;
 import java.util.Scanner;
 import java.util.List;
 import java.util.ArrayList;
@@ -81,8 +80,7 @@ public class Main {
         System.out.println("Se você quer uma explicaçao digite 1");
         int calado = input.nextInt();
 
-        System.out.println("Quantas ancoras tem o seu veiculo");
-        int anumeroancora = input.nextInt();
+
         if (calado == 1) {
             System.out.println("Calado em náutica é a profundidade que a quilha de uma embarcação atinge abaixo da linha d'água.");
             System.out.println("Agora que você sabe informe o nível do calado:");
@@ -441,33 +439,17 @@ public class Main {
                     }
                 }
                 case ACELERAR -> {
-                    handleAcelerar(veiculoSelecionado);
-                    int i = 1;
-                    if (!veiculoSelecionado.isligado()) {
-                        System.out.println("O veículo precisa estar ligado!");
-                    } else if (veiculoSelecionado.getVelocidadeAtual() >= veiculoSelecionado.getVelocidadeMaxima()) {
-                        System.out.println("Velocidade máxima atingida: " + veiculoSelecionado.getVelocidadeAtual() + " km/h");
-                    } else {
-                        System.out.print("Quanto você quer acelerar (km/h)? ");
-                        int acelerar = input.nextInt();
-
-                        if (!veiculoSelecionado.podeMover(veiculoSelecionado.getVelocidadeAtual(), acelerar)) {
-                            System.out.println(" Este veículo não pode se mover nessas condições");
-                            continue;
-                        }
+                 if (!veiculoSelecionado.isligado() ) {
+                     System.out.println("O veiculo esta desligado");
+                     Thread.sleep(1000);
+                 }else {
+                     System.out.println("quanto vc quer acelerar");
+                     System.out.println("km/");veiculoSelecionado.acelerar(input.nextInt());
+                     Thread.sleep(1000);
+                 }
 
 
-                        if (veiculoSelecionado.getVelocidadeAtual() + acelerar <= veiculoSelecionado.getVelocidadeMaxima()) {
-                            veiculoSelecionado.setVelocidadeAtual(++acelerar);
-                            System.out.println("Velocidade atual: " + veiculoSelecionado.getVelocidadeAtual() + " km/h");
-                        } else {
-                            veiculoSelecionado.setVelocidadeAtual(veiculoSelecionado.getVelocidadeMaxima());
-                            System.out.println("Velocidade máxima atingida: " + veiculoSelecionado.getVelocidadeAtual() + " km/h");
-
-                        }
-                    }
                 }
-
                 case FREAR -> {
                     int i = 1;
                     if (!veiculoSelecionado.isligado()) {
@@ -530,7 +512,7 @@ public class Main {
                 System.out.println("Velocidade mínima de decolagem: " + aereo.getVelocidadeMinimaDecolagem());
                 aereo.decolar();
                 aereo.pousar();
-                // aereo.frear();
+                aereo.frear();
             }
             case VeiculoTerrestre terrestre -> {
                 terrestre.acelerar(acelerar);
@@ -539,7 +521,8 @@ public class Main {
                 } else {
                     System.out.println("O veículo terrestre está desligado.");
                 }
-                // terrestre.frear();
+                int frear = 0;
+                terrestre.frear();
             }
             default -> throw new IllegalStateException("Tipo de veículo inesperado: " + veiculoSelecionado.getClass().getSimpleName());
         }

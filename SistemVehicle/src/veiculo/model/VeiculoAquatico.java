@@ -49,7 +49,7 @@ public class VeiculoAquatico extends Veiculo {
         super.printInformacoes();
         System.out.println("Calado: " + calado);
         System.out.println("Número de âncoras: " + numeroAncoras);
-        System.out.println("Status: " + (ancorado ? "⚓ Ancorado" : "Livre"));
+        System.out.println("Status: " + (ancorado ? " Ancorado" : "Livre"));
     }
 
     @Override

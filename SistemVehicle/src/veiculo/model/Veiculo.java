@@ -30,10 +30,12 @@ public abstract class Veiculo {
     }
 
     public void printInformacoes() {
+
         System.out.println("modelo: " + modelo);
         System.out.println("ano de Fabricacao: " + anoFabricacao);
         System.out.println("velocidade Maxima: " + velocidadeMaxima);
         System.out.println("capacidade de passageiros: " + capacidade);
+        System.out.println("tipo: " + tipo);
     }
 
     public int getCodigo() {
@@ -162,9 +164,10 @@ public abstract class Veiculo {
         }
     }
 
-    public  void frear(int frear){
+    public  void frear(){
 
 
+        int frear = 0;
         int novaVelocidade = this.velocidadeAtual - frear;
 
         if (novaVelocidade > this.velocidadeMaxima) {

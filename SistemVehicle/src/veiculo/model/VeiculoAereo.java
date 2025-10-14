@@ -52,5 +52,13 @@ public class VeiculoAereo extends Veiculo {
         this.velocidadeMinimaDecolagem = 200; // valor padrão
         this.emVoo = false;
     }
+    @Override
+    public void acelerar(int acelerar) {
+        if (!emVoo) {
+            System.out.println("O avião está no solo. Decole antes de acelerar.");
+            return;
+        }
+        super.acelerar(acelerar);
+    }
 
 }
