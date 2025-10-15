@@ -157,14 +157,14 @@ public abstract class Veiculo {
 
         if (novaVelocidade > this.velocidadeMaxima) {
             this.velocidadeAtual = this.velocidadeMaxima;
-            System.out.println("Velocidade m�xima atingida: " + this.velocidadeMaxima + " km/h");
+            System.out.println("Velocidade maxima atingida: " + this.velocidadeMaxima + " km/h");
         } else {
             this.velocidadeAtual = novaVelocidade;
             System.out.println("Velocidade atual: " + this.velocidadeAtual + " km/h");
         }
     }
 
-    public  void frear(){
+    public void frear() {
 
 
         int frear = 0;

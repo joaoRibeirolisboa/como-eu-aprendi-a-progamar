@@ -11,6 +11,7 @@ public class VeiculoAereo extends Veiculo {
         this.emVoo = false;
     }
 
+
     public int getAltitudeMaxima() { return altitudeMaxima; }
     public void setAltitudeMaxima(int altitudeMaxima) { this.altitudeMaxima = altitudeMaxima; }
 
@@ -18,19 +19,19 @@ public class VeiculoAereo extends Veiculo {
     public void setVelocidadeMinimaDecolagem(int velocidadeMinimaDecolagem) { this.velocidadeMinimaDecolagem = velocidadeMinimaDecolagem; }
 
     // 🔹 novos métodos públicos
-    public void decolar() {
+    public void decolar() throws InterruptedException {
         if (!emVoo) {
             emVoo = true;
-            System.out.println("Avião decolando...");
+            System.out.println("Avião decolando..."+ levantandovoo());
         } else {
             System.out.println("O avião já está em voo.");
         }
     }
 
-    public void pousar() {
+    public void pousar() throws InterruptedException {
         if (emVoo) {
             emVoo = false;
-            System.out.println("Avião pousando...");
+            System.out.println("Avião pousando"+ pousandovoo());
         } else {
             System.out.println("O avião já está no solo.");
         }
@@ -59,6 +60,30 @@ public class VeiculoAereo extends Veiculo {
             return;
         }
         super.acelerar(acelerar);
+    }
+    public static boolean levantandovoo() throws InterruptedException {
+        String[] frames = {"--==✈==----->>>", "-----==✈==-->>>", "-------==✈==>>>", "^^^^✈"};
+        for (int i = 0; i < 1; i++) {
+            for (String frame : frames) {
+                System.out.print("\r" + frame);
+                Thread.sleep(750);
+            }
+        }
+        System.out.print("\rPronto\n");
+        Thread.sleep(1000);
+        return true;
+    }
+    public static boolean pousandovoo() throws InterruptedException {
+        String[] frames = {"✈>>>       ||  || ", "✈>>>    || ||   ", "✈ || ||      ", "-- --"};
+        for (int i = 0; i < 1; i++) {
+            for (String frame : frames) {
+                System.out.print("\r" + frame);
+                Thread.sleep(750);
+            }
+        }
+        System.out.print("\rPronto\n");
+        Thread.sleep(1000);
+        return true;
     }
 
 }

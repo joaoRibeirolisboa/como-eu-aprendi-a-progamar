@@ -6,6 +6,7 @@ public class VeiculoAquatico extends Veiculo {
     private boolean ancorado;
 
     public VeiculoAquatico(int calado, int numeroAncoras, boolean ancorado) {
+        super(); // garante inicialização da classe base
         this.calado = calado;
         this.numeroAncoras = numeroAncoras;
         this.ancorado = ancorado;
@@ -14,8 +15,10 @@ public class VeiculoAquatico extends Veiculo {
     public VeiculoAquatico(int numeroAncoras) {
         super();
         this.numeroAncoras = numeroAncoras;
+        this.ancorado = true; // começa ancorado por padrão
     }
 
+    // Getters e setters
     public int getCalado() { return calado; }
     public void setCalado(int calado) { this.calado = calado; }
 
@@ -25,22 +28,22 @@ public class VeiculoAquatico extends Veiculo {
     public boolean isAncorado() { return ancorado; }
     public void setAncorado(boolean ancorado) { this.ancorado = ancorado; }
 
-    // 🔹 novos métodos públicos
-    public void subirAncora() {
+
+    public void subirAncora() throws InterruptedException {
         if (ancorado) {
             ancorado = false;
-            System.out.println("Âncora levantada! O navio está livre para navegar.");
+            System.out.println("ancora esta levantada        "+spinner()  );
         } else {
-            System.out.println("O navio já está livre, sem âncora!");
+            System.out.println("A âncora já está levantada.");
         }
     }
 
-    public void descerAncora() {
+    public void descerAncora() throws InterruptedException {
         if (!ancorado) {
             ancorado = true;
-            System.out.println("Âncora baixada! O navio está ancorado.");
+            System.out.println("a ancora esta abaixada   " + spinner());
         } else {
-            System.out.println("O navio já está ancorado.");
+            System.out.println("A âncora já está abaixada.");
         }
     }
 
@@ -49,21 +52,39 @@ public class VeiculoAquatico extends Veiculo {
         super.printInformacoes();
         System.out.println("Calado: " + calado);
         System.out.println("Número de âncoras: " + numeroAncoras);
-        System.out.println("Status: " + (ancorado ? " Ancorado" : "Livre"));
+        System.out.println("Status: " + (ancorado ? "Ancorado" : "Livre"));
     }
 
+    // 🔹 O veículo só pode mover se não estiver ancorado
     @Override
     public boolean podeMover(int velocidadeAtual, int acelerar) {
-        return !ancorado && super.podeMover(velocidadeAtual, acelerar);
+        if (ancorado) {
+            System.out.println("Não é possível mover — o veículo está ancorado!");
+            return false;
+        }
+        return super.podeMover(velocidadeAtual, acelerar);
     }
 
+    // 🔹 Bloqueia aceleração se estiver ancorado
     @Override
     public void acelerar(int acelerar) {
-        if (podeMover(getVelocidadeAtual(), acelerar)) {
-            super.acelerar(acelerar);
-            System.out.println("Acelerando para " + getVelocidadeAtual() + " nós.");
-        } else {
-            System.out.println("Não é possível acelerar. O veículo está ancorado.");
+        if (ancorado) {
+            System.out.println("Não é possível acelerar com a âncora abaixada!");
+            return;
         }
+        super.acelerar(acelerar);
+        System.out.println("Acelerando para " + getVelocidadeAtual() + " nós.");
+    }
+    public static boolean spinner() throws InterruptedException {
+        String[] frames = {"/", "-", "\\", "|"};
+        for (int i = 0; i < 10; i++) {
+            for (String frame : frames) {
+                System.out.print("\r" + frame);
+                Thread.sleep(250);
+            }
+        }
+        System.out.print("\rPronto\n");
+        Thread.sleep(1000);
+        return true;
     }
 }

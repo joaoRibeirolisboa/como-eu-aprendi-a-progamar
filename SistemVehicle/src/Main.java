@@ -473,18 +473,59 @@ public class Main {
                         }
                     }
                 }
-                /*case SUBIR_ANCORA -> {
-                    (!veiculo.veiculoselecionado.veiculoAquatico)
+                case SUBIR_ANCORA -> {
 
-                    if (!veiculoSelecionado.isligado()) {
-                        System.out.println("O veiculo esta desligado");
-                        Thread.sleep(1000);
-                    }else if (veiculoSelecionado.() == 0) {
-                        System.out.println("O veículo ja esta parado");
-                        Thread.sleep(1000);
 
+                    VeiculoAquatico veiculoAqua = (VeiculoAquatico) veiculoSelecionado;
+
+                    if (!veiculoAqua.isligado()) {
+                        System.out.println("O veículo está desligado!");
+                        Thread.sleep(1000);
+                        break;
                     }
-                    }*/
+
+                    if (!veiculoAqua.isAncorado()) {
+                        System.out.println("A âncora já está levantada");
+                        Thread.sleep(1000);
+                        break;
+                    }
+
+                    veiculoAqua.subirAncora();
+                    Thread.sleep(1000);
+                } case DESCER_ANCORA -> {
+                    VeiculoAquatico veiculoAqua = (VeiculoAquatico) veiculoSelecionado;
+
+                    if (!veiculoAqua.isligado()) {
+                        System.out.println("O veículo está desligado!");
+                        Thread.sleep(1000);
+                        break;
+                    }
+                    veiculoAqua.descerAncora();
+                    Thread.sleep(1000);
+                }
+
+                case DECOLAR -> {
+                    VeiculoAereo veiculoAereo = (VeiculoAereo) veiculoSelecionado;
+                    if (!veiculoAereo.isligado()) {
+                        System.out.println("O veículo está desligado!");
+                        Thread.sleep(1000);
+                        break;
+                    }
+                    veiculoAereo.decolar();
+                    Thread.sleep(1000);
+
+                }
+                case POUSAR -> {
+                    VeiculoAereo veiculoAereo = (VeiculoAereo) veiculoSelecionado;
+                    if (!veiculoAereo.isligado()) {
+                        System.out.println("O veículo está desligado!");
+                        Thread.sleep(1000);
+                        break;
+                    }
+                    veiculoAereo.pousar();
+                    Thread.sleep(1000);
+
+                }
 
                 case BACK -> {
                     return;
@@ -492,7 +533,7 @@ public class Main {
             }
         }
     }
-    private static void handleAcelerar(Veiculo veiculoSelecionado) {
+    private static void handleAcelerar(Veiculo veiculoSelecionado) throws InterruptedException {
         int acelerar = 10; // futuramente pode vir via input
 
         if (veiculoSelecionado == null) {
